@@ -7,6 +7,8 @@ import cors from 'cors';
 import morgan from 'morgan';
 // route
 import postRoutes from './routes/api/post';
+import userRoutes from './routes/api/user';
+import authRoutes from './routes/api/auth';
 
 //
 const app = express();
@@ -25,7 +27,7 @@ app.use(express.json());
 
 mongoose
     .connect(MONGO_URI, {
-        useNewUrlParser: true,
+        useNewUrlParser: true, // DB에 연결할 URI 에 대해 파싱을 하는 역할
     })
     .then(() => console.log('success'))
     .catch((err) => {
@@ -35,5 +37,7 @@ mongoose
 // ** use routes
 app.get('/'); //모든 신호를 받아들인다
 app.use('/api/post', postRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/auth', authRoutes);
 
 export default app;

@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    email: {
+    userId: {
         type: String,
         required: true,
         unique: true,
@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['MainJuin', 'SubJuin', 'User'],
+        enum: ['MainMaster', 'SubMaster', 'User'],
         default: 'User',
     },
     register_date: {
