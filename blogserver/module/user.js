@@ -29,7 +29,7 @@ const UserSchema = new mongoose.Schema({
         {
             post_id: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'posts', //얘를 참조할땐 posts라고 하겠다.
+                ref: 'post', //얘를 참조할땐 posts라고 하겠다.
             },
             comment_id: {
                 type: mongoose.Schema.Types.ObjectId,
@@ -40,7 +40,7 @@ const UserSchema = new mongoose.Schema({
     posts: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'posts',
+            ref: 'post',
         },
     ],
 });
