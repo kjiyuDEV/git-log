@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google';
 import '../../public/css/common.css';
 import Link from 'next/link';
+import ReduxProvider from './provider';
 
 const inter = Inter({ subsets: ['latin'] });
 console.log('here');
@@ -18,7 +19,11 @@ export default async function RootLayout({ children }) {
     return (
         <html lang="en">
             <body className={inter.className}>
-                <div className="main-wrap">{children}</div>
+                <div className="main-wrap">
+                    <ReduxProvider>
+                        {children}
+                    </ReduxProvider>
+                </div>
             </body>
         </html>
     );

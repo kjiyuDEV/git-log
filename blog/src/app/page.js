@@ -11,11 +11,15 @@ import {
 } from 'react';
 import Banner from './component/Banner';
 import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Home() {
     const ref = useRef();
+    const dispatch = useDispatch();
     const [hideMenu, setHideMenu] = useState(true);
-
+    const dd = useSelector((state) => {
+        console.log(state);
+    });
     const mainPost = [
         {
             id: 0,
@@ -34,10 +38,19 @@ export default function Home() {
         },
     ];
 
+    useEffect(() => {
+        dispatch({
+            type: 'gg',
+        });
+    }, []);
+
     return (
         <>
             {!hideMenu && (
-                <Slidemenu hideMenu={hideMenu} setHideMenu={setHideMenu} />
+                <Slidemenu
+                    hideMenu={hideMenu}
+                    setHideMenu={setHideMenu}
+                />
             )}
             <div ref={ref} className="wrap">
                 <Header
@@ -49,16 +62,29 @@ export default function Home() {
                 <ol className="main-posts">
                     {mainPost.map((v) => {
                         return (
-                            <li key={v.id} className="post-card">
-                                <Link href={`/post/${v.id}`}>
+                            <li
+                                key={v.id}
+                                className="post-card"
+                            >
+                                <Link
+                                    href={`/post/${v.id}`}
+                                >
                                     <div className="post-title">
-                                        <span className="date">{v.date}</span>
-                                        <span className="title">{v.title}</span>
+                                        <span className="date">
+                                            {v.date}
+                                        </span>
+                                        <span className="title">
+                                            {v.title}
+                                        </span>
                                     </div>
                                     <div className="post-image">
-                                        <img src={`${v.src}`} />
+                                        <img
+                                            src={`${v.src}`}
+                                        />
                                     </div>
-                                    <div className="content">{v.content}</div>
+                                    <div className="content">
+                                        {v.content}
+                                    </div>
                                 </Link>
                             </li>
                         );
