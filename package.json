@@ -6,7 +6,8 @@
     "@babel/preset-env": "^7.23.6",
     "babel-loader": "^9.1.3",
     "morgan": "^1.10.0",
-    "nodemon": "^3.0.2"
+    "nodemon": "^3.0.2",
+    "redux-logger": "^3.0.6"
   },
   "scripts": {
     "dev": "nodemon ./blogserver/server.js --exec babel-node --ignore './blog'",
@@ -16,15 +17,24 @@
     "dev-watch": "babel-watch blogserver/server.js --ignore './blog'"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.0.1",
     "babel-watch": "^7.8.1",
     "bcryptjs": "^2.4.3",
+    "connected-next-router": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "helmet": "^7.1.0",
+    "history": "^5.3.0",
     "hpp": "^0.2.3",
     "jsonwebtoken": "^9.0.2",
     "moment": "^2.29.4",
-    "mongoose": "^8.0.3"
+    "mongoose": "^8.0.3",
+    "next-redux-wrapper": "^8.1.0",
+    "react-redux": "^9.0.4",
+    "reactstrap": "^9.2.1",
+    "redux": "^5.0.0",
+    "redux-persist": "^6.0.0",
+    "redux-saga": "^1.2.3"
   }
 }
