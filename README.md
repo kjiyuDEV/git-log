@@ -1,1 +1,1 @@
-NextJS, redux-saga, express 로 만든 개인블로그
+NextJS(프론트), redux-saga(미들웨어), express(서버) 로 만든 개인블로그
