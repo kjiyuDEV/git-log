@@ -1,128 +1,61 @@
 @keyframes slide-x-active-animation {
-  0% {
-     left: 100%;
-  }
+    0% {
+        left: 100%;
+    }
 
-  100% {
-   left:  0%;
-  }
+    100% {
+        left: 0%;
+    }
 }
 @keyframes slide-x-inactive-animation {
-  0% {
-     left: 0%;
-  }
+    0% {
+        left: 0%;
+    }
 
-  100% {
-   left:  100%;
-  }
+    100% {
+        left: 100%;
+    }
 }
 
 @keyframes dropdown-active-animation {
-  0% {
-     top: -100px;
-  }
+    0% {
+        top: -100px;
+    }
 
-  100% {
-   top:  0%;
-  }
+    100% {
+        top: 0%;
+    }
 }
 @keyframes dropdown-inactive-animation {
-  0% {
-     top: 0%;
-  }
-
-  100% {
-   top:  -100px;
-  }
-}
-
-
-/****************** 헤더 *******************/
-.header {
-    border-bottom: solid 1px grey;
-    display: flex;
-    align-items: center;
-    justify-content:space-between;
-    padding: 10px;
-    position: absolute;
-    z-index:1000;
-    background: white;
-    width: 100%;
-    height: 60px;
-    top: -100px;
-    > p {
-        margin-left: 50px;
-        font-size: 20px;
+    0% {
+        top: 0%;
     }
-    input {
-        border: solid 1px gainsboro;
-        border-radius: 5px;
-        width: 100%;
-        height: 100%;
-        padding: 0 10px;
-        font-size: 12px;
+
+    100% {
+        top: -100px;
     }
-    .right-box {
-        /* border:solid 2px red; */
-        display: flex;
-        /* width: 5vw; */
-        justify-content: space-between;
-        align-items: center;
-        >div {
-            margin: 0 15px;
-            cursor: pointer;
-        }
-    }
-}
-
-.header.active{
-    animation: dropdown-active-animation .4s ease;
-    top: 0;
-}
-.header.inactive {
-    animation: dropdown-inactive-animation .4s ease;
-    top: -100px;
-}
-
-
-/******************** 슬라이드메뉴 ********************/
-.slide-menu{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 100%;
-    background: white;
-    z-index: 1001;
-}
-.slide-menu.active{
-    animation: slide-x-active-animation .4s ease;
-    left:  0%;
-}
-.slide-menu.inactive {
-    left: 100%;
-    animation: slide-x-inactive-animation .4s ease;
 }
 
 /************* Banner **************/
 .banner {
     height: 350px;
     background-image: url('../img/profile.jpg');
-    background-size:cover;
-    background-position-y: -130px ;
+    background-size: cover;
+    background-position-y: -130px;
     background-repeat: no-repeat;
     position: relative;
-    >div {
-        color:white;
+    > div {
+        color: white;
         position: relative;
     }
-    .visitor, .comment {
+    .visitor,
+    .comment {
         padding-left: 10px;
         font-size: 12px;
     }
     .visitor {
         top: 50%;
         /* border: solid 2px blue; */
-        z-index:100;
     }
     .comment {
         /* border: solid 2px blue; */
@@ -133,7 +66,7 @@
         display: flex;
         justify-content: flex-end;
         padding-right: 10px;
-        >div {
+        > div {
             margin: 5px;
             width: 30px;
             height: 30px;
@@ -146,12 +79,12 @@
     }
 }
 .banner::before {
-    content:"";
-    background-image: linear-gradient(0deg,rgba(0,0,0,.4),rgba(0,0,0,.4));
-    position:absolute;
+    content: '';
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+    position: absolute;
     height: 350px;
     width: 100%;
-    z-index:0;
+    z-index: 0;
 }
 
 /******************** 메인 포스팅 ******************/
@@ -174,14 +107,14 @@
         /* border: solid 2px red; */
     }
     .title {
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 600;
     }
     .post-image {
         overflow: hidden;
         border-radius: 10px;
         width: 320px;
-        height: 320px; 
+        height: 320px;
         display: flex;
         margin: 10px auto;
         align-items: center;
@@ -189,16 +122,83 @@
             width: 100%;
         }
     }
-    .content{
-        display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+    .content {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
         align-items: center;
         justify-content: center;
         max-height: 60px;
         width: 320px;
+        font-size: 14px;
         margin: 10px auto;
         /* border: solid 2px blue; */
         word-break: break-word;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+}
+
+/***************** 회원가입 *********************/
+.signIn {
+    position: absolute;
+    width: 100%;
+    margin-top: 70px;
+    padding: 0 20px;
+    > p {
+        text-align: center;
+    }
+    form {
+        > div {
+            border: solid 1px grey;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-self: center;
+            margin: 10px auto;
+            border-radius: 10px;
+            width: 350px;
+            > input {
+                width: 100%;
+                background: rgba(0, 0, 0, 0);
+                height: 40px;
+                border-top: solid 1px grey;
+                padding-left: 10px;
+            }
+        }
+        .msg {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            margin-top: 7px;
+            font-size: 12px;
+            color: #e45252;
+        }
+        .signIn-submit {
+            border-radius: 10px;
+            background: rgb(80, 80, 80);
+            width: 350px;
+            height: 50px;
+            position: relative;
+            transform: translate(-50%, -50%);
+            top: 50px;
+            left: 50%;
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+        }
+        .signIn-submit:disabled {
+            cursor: not-allowed;
+            background: rgb(219, 219, 219);
+            color: rgb(175, 175, 175);
+        }
+    }
+    .caution {
+        font-size: 12px;
+        /* text-align: center; */
+        width: 360px;
+        /* border: solid 2px blue; */
+        margin-top: 50px;
     }
 }
