@@ -1,9 +1,12 @@
-"use client"
-import React from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
+import { TYPE } from '@/app/redux/types';
 
 const Main = () => {
-        const mainPost = [
+    const dispatch = useDispatch();
+    const mainPost = [
         {
             id: 0,
             title: '일본여행 일지',
@@ -20,38 +23,32 @@ const Main = () => {
             date: '2023.12.27',
         },
     ];
+
+    const [mainPosts, setMainPosts] = useState([]);
+    // const { posts, categoryFindResult, loading, postCount } = useSelector((state) => state.post);
+
+    useEffect(() => {
+        dispatch({ type: TYPE.POSTS_LOADING_REQUEST, payload: 0 });
+    }, []);
     return (
         <ol className="main-posts">
-                    {mainPost.map((v) => {
-                        return (
-                            <li
-                                key={v.id}
-                                className="post-card"
-                            >
-                                <Link
-                                    href={`/post/${v.id}`}
-                                >
-                                    <div className="post-title">
-                                        <span className="date">
-                                            {v.date}
-                                        </span>
-                                        <span className="title">
-                                            {v.title}
-                                        </span>
-                                    </div>
-                                    <div className="post-image">
-                                        <img
-                                            src={`${v.src}`}
-                                        />
-                                    </div>
-                                    <div className="content">
-                                        {v.content}
-                                    </div>
-                                </Link>
-                            </li>
-                        );
-                    })}
-                </ol>
+            {mainPost.map((v) => {
+                return (
+                    <li key={v.id} className="post-card">
+                        <Link href={`/post/${v.id}`}>
+                            <div className="post-title">
+                                <span className="date">{v.date}</span>
+                                <span className="title">{v.title}</span>
+                            </div>
+                            <div className="post-image">
+                                <img src={`${v.src}`} />
+                            </div>
+                            <div className="content">{v.content}</div>
+                        </Link>
+                    </li>
+                );
+            })}
+        </ol>
     );
 };
 

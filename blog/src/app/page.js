@@ -27,9 +27,6 @@ export default function Home() {
         <>
             <Banner />
             <Main />
-
-            {confirmModal.open && <ConfirmModal />}
-            {modal.open && modal.data.type === 'login' && !auth.token && <LoginModal />}
         </>
     );
 }

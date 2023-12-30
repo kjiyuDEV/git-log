@@ -8,6 +8,7 @@ import createSagaMiddleware from 'redux-saga'; // redux-saga를 생성하기 위
 import { createWrapper } from 'next-redux-wrapper';
 import localStorage from 'redux-persist/es/storage';
 import thunk from 'redux-thunk';
+import { postReducer } from './redux/reducers/post';
 
 const authInfo = {
     key: 'authInfo',
@@ -17,6 +18,7 @@ const authInfo = {
 const reducer = combineReducers({
     auth: authReducer,
     modals: modalReducer,
+    post: postReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();
@@ -42,7 +44,7 @@ export const store = configureStore({
             },
         }).concat(sagaMiddleware),
 });
-
+console.log(rootSaga, '<rootSaga');
 sagaMiddleware.run(rootSaga);
 export const persistor = persistStore(store);
 export const wrapper = createWrapper(persistor, { debug: true });

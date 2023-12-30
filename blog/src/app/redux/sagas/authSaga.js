@@ -38,7 +38,6 @@ function* loginUser(action) {
 }
 
 function* watchLoginUser() {
-    console.log('??동작??');
     // 감시시 작동하는 함수 loginUser
     yield takeEvery(TYPE.LOGIN_REQUEST, loginUser);
 }
