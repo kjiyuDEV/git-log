@@ -31,13 +31,11 @@ router.get('/', async (req, res) => {
 
 router.post('/', (req, res) => {
     console.log(req);
-    const { name, userId, password } = req.body;
+    const { name, userId, password, nickname } = req.body;
 
     // Simple validation
     if (!name || !userId || !password) {
-        return res
-            .status(400)
-            .json({ msg: '모든 필드를 채워주세요' });
+        return res.status(400).json({ msg: '모든 필드를 채워주세요' });
     }
     // Check for existing user
     User.findOne({ userId }).then((user) => {
@@ -50,36 +48,29 @@ router.post('/', (req, res) => {
             name,
             userId,
             password,
+            nickname,
         });
 
         //해시값을 쉽게바꿔준다.
         bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(
-                newUser.password,
-                salt,
-                (err, hash) => {
-                    if (err) throw err;
-                    newUser.password = hash;
-                    newUser.save().then((user) => {
-                        jwt.sign(
-                            { id: user.id },
-                            JWT_SECRET,
-                            { expiresIn: 3600 },
-                            (err, token) => {
-                                if (err) throw err;
-                                res.json({
-                                    token,
-                                    user: {
-                                        id: user.id,
-                                        name: user.name,
-                                        userId: user.userId,
-                                    },
-                                });
+            bcrypt.hash(newUser.password, salt, (err, hash) => {
+                if (err) throw err;
+                newUser.password = hash;
+                newUser.save().then((user) => {
+                    jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
+                        if (err) throw err;
+                        res.json({
+                            token,
+                            user: {
+                                id: user.id,
+                                name: user.name,
+                                userId: user.userId,
+                                nickname: user.nickname || user.name,
                             },
-                        );
+                        });
                     });
-                },
-            );
+                });
+            });
         });
     });
 });

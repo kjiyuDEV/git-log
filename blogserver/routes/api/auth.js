@@ -25,38 +25,28 @@ router.post('/', (req, res) => {
     }
     // Check for existing user
     User.findOne({ userId }).then((user) => {
-        if (!user)
-            return res
-                .status(400)
-                .json({ msg: '아이디가 존재하지 않아요' });
+        if (!user) return res.status(400).json({ msg: '아이디가 존재하지 않아요' });
 
         // Validate password
         // 해시값을 바꿔줌
-        bcrypt
-            .compare(password, user.password)
-            .then((isMatch) => {
-                if (!isMatch)
-                    return res.status(400).json({
-                        msg: '비밀번호가 일치하지 않아요',
-                    });
-                jwt.sign(
-                    { id: user.id },
-                    JWT_SECRET,
-                    { expiresIn: '2 days' },
-                    (err, token) => {
-                        if (err) throw err;
-                        res.json({
-                            token,
-                            user: {
-                                id: user.id,
-                                name: user.name,
-                                userId: user.userId,
-                                role: user.role,
-                            },
-                        });
+        bcrypt.compare(password, user.password).then((isMatch) => {
+            if (!isMatch)
+                return res.status(400).json({
+                    msg: '비밀번호가 일치하지 않아요',
+                });
+            jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '2 days' }, (err, token) => {
+                if (err) throw err;
+                res.json({
+                    token,
+                    user: {
+                        id: user.id,
+                        name: user.name,
+                        userId: user.userId,
+                        role: user.role,
                     },
-                );
+                });
             });
+        });
     });
 });
 
@@ -68,9 +58,7 @@ router.post('/logout', (req, res) => {
 // 유저찾기
 router.get('/user', auth, async (req, res) => {
     try {
-        const user = await User.findById(
-            req.user.id,
-        ).select('-password');
+        const user = await User.findById(req.user.id).select('-password');
         if (!user) throw Error('유저가 존재하지 않습니다');
         res.json(user);
     } catch (e) {
