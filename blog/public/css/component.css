@@ -100,11 +100,19 @@
     padding: 10px;
     font-size: 13px;
     color: black;
-    .date {
-        display: inline-block;
-        color: grey;
-        width: 100px;
-        /* border: solid 2px red; */
+    .post-title {
+        display: flex;
+        .date {
+            display: flex;
+            align-items: center;
+            color: grey;
+            width: 130px;
+            .time {
+                /* border: solid 2px blue; */
+                margin-left: 5px;
+                font-size: 11px;
+            }
+        }
     }
     .title {
         font-size: 16px;

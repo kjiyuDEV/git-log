@@ -57,10 +57,10 @@ router.post('/image', uploadS3.array('upload', 5), async (req, res, next) => {
 router.get('/skip/:skip', async (req, res) => {
     try {
         const postCount = await Post.countDocuments();
-        const postFindResult = await Post.find().skip(Number(req.params.skip)).limit(6).sort({ date: -1 });
+        const postsList = await Post.find().skip(Number(req.params.skip)).limit(6).sort({ date: -1 });
 
         const categoryFindResult = await Category.find();
-        const result = { postFindResult, categoryFindResult, postCount };
+        const result = { postsList, categoryFindResult, postCount };
 
         res.json(result);
     } catch (e) {
