@@ -28,7 +28,7 @@ const Header = ({ hideMenu, setHideMenu, wrapRef }) => {
     }, []);
 
     useEffect(() => {
-        setFixedHeader(['/signIn'].includes(pathname));
+        setFixedHeader(['/signUp'].includes(pathname));
     }, [pathname]);
     return (
         <div className={`header ${scroll || fixedHeader ? 'active' : 'inactive'}`}>

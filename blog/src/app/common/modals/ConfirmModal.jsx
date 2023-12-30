@@ -25,15 +25,17 @@ const ConfirmModal = () => {
         }
     };
     return (
-        <div className="modal_wrap">
-            <div className="modal">
-                <ConfirmModalHeader />
-                <div className="btn_wrap">
-                    <button onClick={handleConfirm}>{confirmModal.data.txtConfirm}</button>
-                    <button onClick={handleCancel}>{confirmModal.data.txtCancel}</button>
+        confirmModal.open && (
+            <div className="modal-wrap">
+                <div className="modal">
+                    <ConfirmModalHeader />
+                    <div className="btn-wrap solo-btn">
+                        <button onClick={handleConfirm}>{confirmModal.data.txtConfirm}</button>
+                        {/* <button onClick={handleCancel}>{confirmModal.data.txtCancel}</button> */}
+                    </div>
                 </div>
             </div>
-        </div>
+        )
     );
 };
 

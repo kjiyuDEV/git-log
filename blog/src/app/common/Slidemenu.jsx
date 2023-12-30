@@ -65,7 +65,9 @@ const Slidemenu = ({ hideMenu, setHideMenu }) => {
                 )}
                 {auth.token && (
                     <div className="user-info user">
-                        <p>{auth.user.userId} (지유)</p>
+                        <p>
+                            {auth.user.userId} ({auth.user.nickname})
+                        </p>
                     </div>
                 )}
                 <button onClick={() => handleClose()} className="close-btn">

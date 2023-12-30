@@ -8,9 +8,8 @@ import { faUser as faUserWhite } from '@fortawesome/free-regular-svg-icons';
 
 const Banner = () => {
     const dispatch = useDispatch();
-    const { modal, auth } = useSelector((state) => {
+    const { auth } = useSelector((state) => {
         return {
-            modal: state.modals.modal,
             auth: state.auth,
         };
     });
@@ -71,7 +70,6 @@ const Banner = () => {
                     </div>
                 </div>
             </div>
-            {modal.open && modal.data.type === 'login' && !auth.token && <LoginModal />}
         </>
     );
 };

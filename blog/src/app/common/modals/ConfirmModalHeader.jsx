@@ -22,7 +22,8 @@ const ConfirmModalHeader = () => {
             <div className="close_btn" onClick={handleModalClose}>
                 <FontAwesomeIcon icon={faXmark} fontSize="20px" />
             </div>
-            <div className="title">{confirmModal.data.title}</div>
+            {/* <div className="title">{confirmModal.data.title}</div> */}
+            <div className="title" dangerouslySetInnerHTML={{ __html: confirmModal.data.title }}></div>
         </>
     );
 };

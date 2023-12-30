@@ -26,8 +26,9 @@ export const authReducer = (state = initialState, action) => {
             });
 
         case TYPE.LOGIN_SUCCESS:
+        case TYPE.USER_REGISTER_SUCCESS:
             localStorage.setItem('token', action.payload.token);
-            toast(`안녕하세요 ${action.payload.user.userId}`);
+            toast(`안녕하세요 ${action.payload.user.nickname}`);
             return Object.assign({}, state, {
                 ...state,
                 ...action.payload,
@@ -53,6 +54,7 @@ export const authReducer = (state = initialState, action) => {
 
         case TYPE.LOGOUT_FAILURE:
         case TYPE.LOGIN_FAILURE:
+        case TYPE.USER_REGISTER_FAILURE:
             localStorage.removeItem('token');
             return Object.assign({}, state, {
                 ...state,

@@ -198,7 +198,7 @@ body {
     animation: slide-x-inactive-animation 0.4s ease;
 }
 
-.modal_wrap {
+.modal-wrap {
     background: #333333a1;
     z-index: 100;
     position: absolute;
@@ -253,7 +253,7 @@ body {
             margin-top: 15px;
             text-align: center;
         }
-        .btn_wrap {
+        .btn-wrap {
             width: 200px;
             margin: auto;
             display: flex;
@@ -267,6 +267,11 @@ body {
                 border: solid 1px #c5c5c5;
                 color: white;
                 font-weight: 600;
+            }
+        }
+        .btn-wrap.solo-btn {
+            button {
+                width: 130px;
             }
         }
     }

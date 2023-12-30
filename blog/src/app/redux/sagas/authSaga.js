@@ -62,7 +62,7 @@ function* watchLogout() {
     yield takeEvery(TYPE.LOGOUT_REQUEST, logout);
 }
 
-// 🌈🌈🌈 signIn 🌈🌈🌈 //
+// 🌈🌈🌈 signUp 🌈🌈🌈 //
 const registerUserAPI = (req) => {
     console.log(req, 'req');
     return axios.post('api/user', req);

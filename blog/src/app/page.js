@@ -12,11 +12,12 @@ import ConfirmModal from './common/modals/ConfirmModal';
 import { Toaster } from 'react-hot-toast';
 
 export default function Home() {
-    const { confirmModal, auth } = useSelector((state) => {
+    const { confirmModal, auth, modal } = useSelector((state) => {
         console.log(state);
         return {
             confirmModal: state.modals.confirmModal,
             auth: state.auth,
+            modal: state.modals.modal,
         };
     });
 
@@ -27,19 +28,8 @@ export default function Home() {
             <Banner />
             <Main />
 
-            <Toaster
-                toastOptions={{
-                    style: {
-                        fontSize: '12px',
-                        background: 'rgba(0, 0, 0, 0.801)',
-                        color: 'white',
-                        height: '30px',
-                        borderRadius: '20px',
-                    },
-                    duration: '150',
-                }}
-            />
             {confirmModal.open && <ConfirmModal />}
+            {modal.open && modal.data.type === 'login' && !auth.token && <LoginModal />}
         </>
     );
 }
