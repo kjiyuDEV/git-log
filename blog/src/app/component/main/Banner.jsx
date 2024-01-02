@@ -1,13 +1,15 @@
-import { faShare, faUser } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { usePathname, useRouter } from 'next/navigation';
+import { faPen, faShare, faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TYPE } from '../../redux/types';
 import LoginModal from '../../common/modals/LoginModal';
 import { faUser as faUserWhite } from '@fortawesome/free-regular-svg-icons';
 
 const Banner = () => {
     const dispatch = useDispatch();
+    const router = useRouter();
     const { auth } = useSelector((state) => {
         return {
             auth: state.auth,
@@ -58,6 +60,17 @@ const Banner = () => {
                     <p>* This site developed by kjiyu 2024</p>
                 </div>
                 <div className="icon_wrap">
+                    {auth.user && auth?.user?.role !== 'User' && (
+                        <div className="login">
+                            <div
+                                onClick={() => {
+                                    router.push('/posting');
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faPen} />
+                            </div>
+                        </div>
+                    )}
                     <div className="login">
                         <div onClick={handleModalOpen}>
                             <FontAwesomeIcon icon={auth.token ? faUser : faUserWhite} />

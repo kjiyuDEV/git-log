@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 import { TYPE } from '../types';
+import { push } from 'connected-next-router';
 
 // 🌈🌈🌈 포스트 조회 🌈🌈🌈
 const loadPostAPI = (payload) => {

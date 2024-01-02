@@ -3,10 +3,11 @@
 import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { faBars, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { usePathname, useRouter } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 
 const Header = ({ hideMenu, setHideMenu, wrapRef }) => {
     const pathname = usePathname();
+    const params = useParams();
     const router = useRouter();
     const [scroll, setScroll] = useState(false);
     const [isSearch, setIsSearch] = useState(false);
@@ -27,8 +28,10 @@ const Header = ({ hideMenu, setHideMenu, wrapRef }) => {
         }
     }, []);
 
+    console.log(`/post/${params.id}`, pathname);
+    console.log(`/post/${params.id}`, pathname);
     useEffect(() => {
-        setFixedHeader(['/signUp'].includes(pathname));
+        setFixedHeader([`/signUp`, `/post/${params.id}`].includes(pathname));
     }, [pathname]);
     return (
         <div className={`header ${scroll || fixedHeader ? 'active' : 'inactive'}`}>

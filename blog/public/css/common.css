@@ -80,7 +80,7 @@ body {
     overflow: hidden;
     .wrap {
         height: 100vh;
-        overflow: scroll;
+        /* overflow: scroll; */
         overflow-x: hidden;
     }
 }

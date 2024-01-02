@@ -11,14 +11,17 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    previewContents: {
+        type: String,
+        required: true,
+    },
     views: {
         type: Number,
         default: -2,
     },
     fileUrl: {
         type: String,
-        default:
-            'https://source.unsplash.com/random/301x201',
+        default: 'https://source.unsplash.com/random/301x201',
     },
     date: {
         type: String,

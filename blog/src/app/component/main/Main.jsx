@@ -15,9 +15,11 @@ const Main = () => {
         console.log('count');
         initFetch();
     }, []);
+
+    console.log(document.getElementsByTagName('figure'));
     return (
         <ol className="main-posts">
-            <p>총 {postCount}개의 글</p>
+            <p style={{ marginLeft: '10px' }}>총 {postCount}개의 글</p>
             {posts.map((v) => {
                 return (
                     <li key={v.id} className="post-card">
@@ -30,9 +32,10 @@ const Main = () => {
                                 <span className="title">{v.title}</span>
                             </div>
                             <div className="post-image">
-                                <img src={`${v.src}`} />
+                                <img src={`${v.fileUrl}`} />
                             </div>
-                            <div className="content">{v.content}</div>
+
+                            <div className="content">{v.previewContents}</div>
                         </Link>
                     </li>
                 );
