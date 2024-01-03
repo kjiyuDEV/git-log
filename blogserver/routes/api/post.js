@@ -27,7 +27,7 @@ const s3 = new AWS.S3({
 const uploadS3 = multer({
     storage: multerS3({
         s3,
-        bucket: 'sideproject2020/upload',
+        bucket: 'blogjiyu/upload/',
         region: 'ap-northeast-2',
         key(req, file, cb) {
             const ext = path.extname(file.originalname);
@@ -42,6 +42,7 @@ const uploadS3 = multer({
 // @desc      Create a Post
 // @access    Private
 router.post('/image', uploadS3.array('upload', 5), async (req, res, next) => {
+    console.log('api/post/image');
     try {
         console.log(req.files.map((v) => v.location));
         res.json({ uploaded: true, url: req.files.map((v) => v.location) });
@@ -57,10 +58,10 @@ router.post('/image', uploadS3.array('upload', 5), async (req, res, next) => {
 router.get('/skip/:skip', async (req, res) => {
     try {
         const postCount = await Post.countDocuments();
-        const postFindResult = await Post.find().skip(Number(req.params.skip)).limit(6).sort({ date: -1 });
+        const postsList = await Post.find().skip(Number(req.params.skip)).sort({ date: -1 });
 
         const categoryFindResult = await Category.find();
-        const result = { postFindResult, categoryFindResult, postCount };
+        const result = { postsList, categoryFindResult, postCount };
 
         res.json(result);
     } catch (e) {
@@ -75,13 +76,14 @@ router.get('/skip/:skip', async (req, res) => {
 router.post('/', auth, uploadS3.none(), async (req, res, next) => {
     try {
         console.log(req, 'req');
-        const { title, contents, fileUrl, creator, category } = req.body;
+        const { title, contents, previewContents, fileUrl, creator, category } = req.body;
         const newPost = await Post.create({
             title,
             contents,
+            previewContents,
             fileUrl,
             creator: req.user.id,
-            date: moment().format('YYYY-MM-DD hh:mm:ss'),
+            date: moment().format('YYYY-MM-DD HH:MM'),
         });
 
         const findResult = await Category.findOne({
@@ -169,7 +171,7 @@ router.post('/:id/comments', async (req, res, next) => {
         creator: req.body.userId,
         creatorName: req.body.userName,
         post: req.body.id,
-        date: moment().format('YYYY-MM-DD hh:mm:ss'),
+        date: moment().format('YYYY-MM-DD HH:MM'),
     });
     console.log(newComment, 'newComment');
 
@@ -234,7 +236,7 @@ router.get('/:id/edit', auth, async (req, res, next) => {
 router.post('/:id/edit', auth, async (req, res, next) => {
     console.log(req, 'api/post/:id/edit');
     const {
-        body: { title, contents, fileUrl, id },
+        body: { title, contents, previewContents, fileUrl, id },
     } = req;
 
     try {
@@ -243,8 +245,9 @@ router.post('/:id/edit', auth, async (req, res, next) => {
             {
                 title,
                 contents,
+                previewContents,
                 fileUrl,
-                date: moment().format('YYYY-MM-DD hh:mm:ss'),
+                date: moment().format('YYYY-MM-DD HH:MM'),
             },
             { new: true },
         );

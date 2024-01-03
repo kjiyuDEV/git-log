@@ -23,6 +23,8 @@ app.use(cors({ origin: true, credential: true })); //모든 허용
 app.use(morgan('dev-watch')); //서버 로그 보이기
 
 //서버에서 json형태로 해석하게 함
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ limit: '10mb', extended: false }));
 app.use(express.json());
 
 mongoose

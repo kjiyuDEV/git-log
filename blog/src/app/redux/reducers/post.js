@@ -25,7 +25,7 @@ export const postReducer = (state = initialState, action) => {
         case TYPE.POSTS_LOADING_SUCCESS:
             return {
                 ...state,
-                posts: [...state.posts, ...action.payload.postFindResult],
+                posts: [...action.payload.postsList],
                 categoryFindResult: action.payload.categoryFindResult,
                 postCount: action.payload.postCount,
                 loading: false,
