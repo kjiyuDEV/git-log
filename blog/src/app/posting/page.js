@@ -5,7 +5,7 @@ import Editor from 'ckeditor5-custom-build';
 import Base64UploaderPlugin from '@/@ckeditor/Base64Uploads';
 import PostingHeader from '../component/posting/PostingHeader';
 import { TYPE } from '../redux/types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import e from 'cors';
 import Myinit from '../component/posting/UploadeAdapter';
 
@@ -82,8 +82,8 @@ const page = () => {
         title: null,
         contents: null,
         previewContents: null,
-        category: null,
-        fileUrl: null,
+        category: '일상',
+        fileUrl: '',
     });
 
     const getDataFromCKEditor = (event, editor) => {
@@ -134,6 +134,24 @@ const page = () => {
 
     const onSubmit = async (e) => {
         await e.preventDefault();
+        console.log(Object.keys(form).find((v) => form[v] === null));
+        if (Object.keys(form).find((v) => form[v] === null)) {
+            dispatch({
+                type: TYPE.OPEN_CONFIRM_MODAL,
+                data: {
+                    type: 'submitResult',
+                    title: '빈 값이 존재합니다.<br/>제목 및 본문내용은<br/>필수입력값입니다.',
+                    txtConfirm: '확인했습니다',
+                    handleConfirm: () => {
+                        dispatch({
+                            type: TYPE.CLOSE_CONFIRM_MODAL,
+                        });
+                    },
+                    handleCancel: null,
+                },
+            });
+            return false;
+        }
         const data = form.contents;
         let { title, contents, fileUrl, category, previewContents } = form;
         const token = localStorage.getItem('token');
@@ -171,7 +189,6 @@ const page = () => {
         }
 
         const body = { title, contents, fileUrl, category, token, previewContents };
-        console.log(body);
 
         dispatch({
             type: TYPE.POST_UPLOADING_REQUEST,
