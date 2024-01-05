@@ -60,7 +60,7 @@ const Banner = () => {
                     <p>* This site developed by kjiyu 2024</p>
                 </div>
                 <div className="icon_wrap">
-                    {auth.user && auth?.user?.role !== 'User' && (
+                    {auth.user && auth?.userRole !== 'User' && (
                         <div className="login">
                             <div
                                 onClick={() => {

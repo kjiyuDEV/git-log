@@ -48,7 +48,7 @@ export const authReducer = (state = initialState, action) => {
                 userId: null,
                 isAuthenticated: false,
                 isLoading: false,
-                userRoll: null,
+                userRole: null,
                 errorMsg: '',
             });
 
@@ -64,7 +64,7 @@ export const authReducer = (state = initialState, action) => {
                 userId: null,
                 isAuthenticated: false,
                 isLoading: false,
-                userRoll: null,
+                userRole: null,
                 // errorMsg: action.payload.data.msg,
                 errorMsg: action.payload.data.msg,
             });
