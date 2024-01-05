@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { TYPE } from '@/app/redux/types';
@@ -11,8 +11,8 @@ import { faHeart as faHeartFill } from '@fortawesome/free-solid-svg-icons';
 const Post = () => {
     const dispatch = useDispatch();
     const params = useParams();
+    const [liked, setLiked] = useState(false);
     const data = useSelector((state) => state.post.postDetail);
-    console.log(data);
 
     useEffect(() => {
         dispatch({ type: TYPE.POST_DETAIL_LOADING_REQUEST, payload: params.id });
@@ -33,9 +33,13 @@ const Post = () => {
             </div>
             <div className="post-footer">
                 <div className="left-wrap">
-                    <div className="likes">
+                    <div className="likes" onClick={() => setLiked(!liked)}>
                         {/* <FontAwesomeIcon icon={faHeart} fontSize={'25px'} /> */}
-                        <FontAwesomeIcon icon={faHeart} fontSize={'25px'} color="rgb(237, 64, 107)" />
+                        <FontAwesomeIcon
+                            icon={liked ? faHeartFill : faHeart}
+                            fontSize={'25px'}
+                            color="rgb(237, 64, 107)"
+                        />
                         <p>{2}</p>
                     </div>
                     <div className="comments">

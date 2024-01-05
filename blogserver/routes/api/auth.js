@@ -43,6 +43,7 @@ router.post('/', (req, res) => {
                         name: user.name,
                         userId: user.userId,
                         role: user.role,
+                        nickname: user.nickname,
                     },
                 });
             });
