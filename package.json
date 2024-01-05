@@ -17,8 +17,8 @@
     "scripts": {
         "dev": "nodemon ./blogserver/server.js --exec babel-node --ignore './blog'",
         "prebuild": "cd blog && npm run build",
-        "build": "babel server --out-dir build",
-        "build:server": "babel server --out-dir build",
+        "build": "babel blogserver --out-dir build",
+        "build:server": "babel blogserver --out-dir build",
         "dev-watch": "babel-watch blogserver/server.js --ignore './blog'"
     },
     "dependencies": {

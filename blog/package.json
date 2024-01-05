@@ -8,6 +8,7 @@
         "start": "next start",
         "lint": "next lint"
     },
+    "proxy": "http://lccalhost:8800",
     "dependencies": {
         "@ckeditor/ckeditor5-build-classic": "^40.2.0",
         "@ckeditor/ckeditor5-editor-classic": "^40.2.0",
