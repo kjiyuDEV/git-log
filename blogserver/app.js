@@ -9,11 +9,13 @@ import morgan from 'morgan';
 import postRoutes from './routes/api/post';
 import userRoutes from './routes/api/user';
 import authRoutes from './routes/api/auth';
+import path from 'path';
 
 //
 const app = express();
 const { MONGO_URI } = config;
 
+const prd = process.env.NODE_ENV === 'production';
 // 서버 보안적인 측면 보완
 app.use(hpp());
 app.use(helmet());
@@ -41,5 +43,12 @@ app.get('/'); //모든 신호를 받아들인다
 app.use('/api/post', postRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
+
+if (prd) {
+    app.use(express.static(path.join(__dirname, '../client/build')));
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+    });
+}
 
 export default app;
