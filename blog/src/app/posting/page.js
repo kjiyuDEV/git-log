@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Editor from 'ckeditor5-custom-build';
-import Base64UploaderPlugin from '@/@ckeditor/Base64Uploads';
 import { TYPE } from '../redux/types';
 import { useDispatch, useSelector } from 'react-redux';
 import PostingHeader from '../component/posting/PostingHeader';
@@ -10,7 +9,6 @@ import PostingHeader from '../component/posting/PostingHeader';
 const posting = () => {
     const dispatch = useDispatch();
     const editorConfiguration = {
-        extraPlugins: [Base64UploaderPlugin],
         toolbar: [
             'heading',
             '|',
@@ -175,7 +173,7 @@ const posting = () => {
                     }}
                 />
             </div>
-            {/* <CKEditor
+            <CKEditor
                 editor={Editor}
                 onChange={(event, editor) => {
                     handleChange(event, editor);
@@ -189,7 +187,7 @@ const posting = () => {
                 }}
                 config={editorConfiguration}
                 data=""
-            /> */}
+            />
             <div className="category-wrap">
                 <p>카테고리</p>
                 <select>
