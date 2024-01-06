@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Editor from 'ckeditor5-custom-build';
 import Base64UploaderPlugin from '@/@ckeditor/Base64Uploads';
-import PostingHeader from '../component/posting/PostingHeader';
 import { TYPE } from '../redux/types';
 import { useDispatch, useSelector } from 'react-redux';
+// import PostingHeader from '../component/posting/PostingHeader';
 
 const posting = () => {
     const dispatch = useDispatch();
@@ -166,7 +166,7 @@ const posting = () => {
 
     return (
         <div className="posting-wrap">
-            <PostingHeader onSubmit={onSubmit} />
+            {/* <PostingHeader onSubmit={onSubmit} /> */}
             <div className="title-wrap">
                 <input
                     placeholder="제목"
