@@ -44,23 +44,4 @@ app.use('/api/post', postRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 
-if (prd) {
-    const handle = app.getRequestHandler();
-
-    const server = express();
-
-    // Your other middleware and routes here
-
-    server.use(express.static('public'));
-
-    server.get('*', (req, res) => {
-        return handle(req, res);
-    });
-
-    server.listen(3000, (err) => {
-        if (err) throw err;
-        console.log('> Ready on http://localhost:3000');
-    });
-}
-
 export default app;
