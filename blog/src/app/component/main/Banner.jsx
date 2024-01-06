@@ -46,6 +46,9 @@ const Banner = () => {
             });
         }
     };
+    const handlePostingPage = () => {
+        router.push('/posting');
+    };
     return (
         <>
             <div className="banner">
@@ -62,11 +65,7 @@ const Banner = () => {
                 <div className="icon_wrap">
                     {auth.user && auth?.userRole !== 'User' && (
                         <div className="login">
-                            <div
-                                onClick={() => {
-                                    router.push('/posting');
-                                }}
-                            >
+                            <div onClick={handlePostingPage}>
                                 <FontAwesomeIcon icon={faPen} />
                             </div>
                         </div>
