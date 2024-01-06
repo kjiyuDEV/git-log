@@ -45,9 +45,21 @@ app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 
 if (prd) {
-    app.use(express.static(path.join(__dirname, '../client/build')));
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+    const handle = app.getRequestHandler();
+
+    const server = express();
+
+    // Your other middleware and routes here
+
+    server.use(express.static('public'));
+
+    server.get('*', (req, res) => {
+        return handle(req, res);
+    });
+
+    server.listen(3000, (err) => {
+        if (err) throw err;
+        console.log('> Ready on http://localhost:3000');
     });
 }
 
