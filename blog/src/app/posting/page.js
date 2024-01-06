@@ -115,13 +115,13 @@ const posting = () => {
             }
 
             console.log(result_Img_Url, 'result_Img_Url');
-            setform({
+            setForm({
                 ...form,
                 fileUrl: result_Img_Url,
                 contents: data,
             });
         } else {
-            setform({
+            setForm({
                 ...form,
                 fileUrl: process.env.REACT_APP_BASIC_IMAGE_URL,
                 contents: data,
