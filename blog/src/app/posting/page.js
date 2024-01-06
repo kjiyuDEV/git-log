@@ -6,10 +6,9 @@ import Base64UploaderPlugin from '@/@ckeditor/Base64Uploads';
 import PostingHeader from '../component/posting/PostingHeader';
 import { TYPE } from '../redux/types';
 import { useDispatch, useSelector } from 'react-redux';
-import e from 'cors';
 import Myinit from '../component/posting/UploadeAdapter';
 
-const page = () => {
+const Posting = () => {
     const dispatch = useDispatch();
     const editorConfiguration = {
         extraPlugins: [Base64UploaderPlugin],
@@ -233,8 +232,6 @@ const page = () => {
                 onInit={(editor) => {
                     // 특정 플러그인을 제거하려면 플러그인을 포함하는 모듈 자체를 비활성화합니다.
                     // editor.plugins.get(ImageCaption).disable();
-                    console.log('!!!!!!!!!!!!!!!!!!!!!!');
-                    console.log(editor);
                     Myinit(editor);
 
                     // 필요하면 다른 설정을 추가할 수 있습니다.
@@ -253,4 +250,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Posting;
