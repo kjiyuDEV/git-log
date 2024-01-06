@@ -8,7 +8,7 @@ import { TYPE } from '../redux/types';
 import { useDispatch, useSelector } from 'react-redux';
 import Myinit from '../component/posting/UploadeAdapter';
 
-const Posting = () => {
+const posting = () => {
     const dispatch = useDispatch();
     const editorConfiguration = {
         extraPlugins: [Base64UploaderPlugin],
@@ -250,4 +250,4 @@ const Posting = () => {
     );
 };
 
-export default Posting;
+export default posting;
