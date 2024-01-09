@@ -48,17 +48,9 @@ app.use('/api/auth', authRoutes);
 // const handle = nextDev.getRequestHandler();
 
 if (prd) {
-    // app.use(express.static(path.join(__dirname, '../client/build')));
-    // app.get('*', (req, res) => {
-    //     res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-    // });
-    app.get(__dirname, (req, res) => {
-        return app.render(req, res, '/test');
+    app.get('*', (req, res) => {
+        return app.render(req, res, '/');
     });
-
-    // app.get('*', (req, res) => {
-    //     return handle(req, res);
-    // });
 }
 
 export default app;
