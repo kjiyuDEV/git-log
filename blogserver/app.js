@@ -39,6 +39,7 @@ mongoose
     });
 
 // ** use routes
+app.get('/'); //모든 신호를 받아들인다
 app.use('/api/post', postRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
