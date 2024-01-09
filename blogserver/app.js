@@ -39,7 +39,10 @@ mongoose
     });
 
 // ** use routes
-app.get('/'); //모든 신호를 받아들인다
+// app.get('/'); //모든 신호를 받아들인다
+app.get('/', (req, res) => {
+    return app.render(req, res, '/');
+});
 app.use('/api/post', postRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
@@ -48,7 +51,7 @@ app.use('/api/auth', authRoutes);
 // const handle = nextDev.getRequestHandler();
 
 if (prd) {
-    app.get('*', (req, res) => {
+    app.get('/', (req, res) => {
         return app.render(req, res, '/');
     });
 }
