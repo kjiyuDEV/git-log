@@ -46,7 +46,10 @@ app.get('/', (req, res) => {
 app.use('/api/post', postRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
-
+app.use((err, req, res) => {
+    console.error(err.stack);
+    res.status(500).send('Internal Server Error');
+});
 // const nextDev = next({ dev });
 // const handle = nextDev.getRequestHandler();
 
