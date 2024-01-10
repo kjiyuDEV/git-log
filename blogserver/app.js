@@ -16,7 +16,7 @@ const prd = process.env.NODE_ENV === 'production';
 
 // EJS 템플릿 엔진 설정
 app.set('view engine', 'ejs'); // EJS 사용
-app.set('views', path.join(__dirname, 'views')); // 템플릿 파일이 위치한 디렉토리 설정
+app.set('views', path.join(__dirname, 'build/views')); // 템플릿 파일이 위치한 디렉토리 설정
 
 app.use(hpp());
 app.use(helmet());
