@@ -8,10 +8,15 @@ import morgan from 'morgan';
 import postRoutes from './routes/api/post';
 import userRoutes from './routes/api/user';
 import authRoutes from './routes/api/auth';
+import path from 'path';
 
 const app = express();
 const { MONGO_URI } = config;
 const prd = process.env.NODE_ENV === 'production';
+
+// EJS 템플릿 엔진 설정
+app.set('view engine', 'ejs'); // EJS 사용
+app.set('views', path.join(__dirname, 'views')); // 템플릿 파일이 위치한 디렉토리 설정
 
 app.use(hpp());
 app.use(helmet());
@@ -59,7 +64,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 
 app.use((err, req, res, next) => {
-    console.error('error!!!!', err.stack);
+    console.error('error!!!!!!!!!!', err.stack);
     res.status(500).send('Internal Server Error');
 });
 
