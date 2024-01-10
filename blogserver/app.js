@@ -46,7 +46,7 @@ mongoose
 
 app.get('/', (req, res) => {
     if (prd) {
-        return app.render('index', {}, (err, html) => {
+        return res.render('index', {}, (err, html) => {
             if (err) {
                 console.error(err);
                 return res.status(500).send('Internal Server Error');
