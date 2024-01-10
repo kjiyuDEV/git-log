@@ -55,7 +55,13 @@ app.use((err, req, res, next) => {
 
 if (prd) {
     app.get('/', (req, res) => {
-        return app.render(req, res, '/');
+        return app.render('index', {}, (err, html) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Internal Server Error');
+            }
+            res.send(html);
+        });
     });
 }
 
