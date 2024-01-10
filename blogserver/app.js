@@ -14,10 +14,6 @@ const app = express();
 const { MONGO_URI } = config;
 const prd = process.env.NODE_ENV === 'production';
 
-// EJS 템플릿 엔진 설정
-app.set('view engine', 'ejs'); // EJS 사용
-app.set('views', path.join(__dirname, 'build/views')); // 템플릿 파일이 위치한 디렉토리 설정
-
 app.use(hpp());
 app.use(helmet());
 
@@ -46,16 +42,11 @@ mongoose
 
 app.get('/', (req, res) => {
     if (prd) {
-        return res.render('index', {}, (err, html) => {
-            if (err) {
-                console.error(err);
-                return res.status(500).send('Internal Server Error');
-            }
-            res.send(html);
-        });
+        return res.sendFile(path.join(__dirname, 'build', 'app.js'));
     } else {
         // Handle '/' route in non-production environment if needed
-        // ...
+        // For example, you might want to render a different HTML page
+        res.send('Non-production environment: Handle the route as needed');
     }
 });
 
