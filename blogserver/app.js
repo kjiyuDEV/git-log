@@ -41,10 +41,13 @@ mongoose
     });
 
 app.get('*', (req, res) => {
-    // '*'은 모든 라우트에 대해서 적용합니다.
-    // 프로덕션 환경일 때는 Next.js가 자동으로 정적 파일을 처리합니다.
-    // 따라서 여기서 따로 파일을 읽어서 보내줄 필요는 없습니다.
-    res.sendFile(path.join(__dirname, '..', 'blog', '.next', 'server', 'app', 'index.html'));
+    if (prd) {
+        res.render(path.join(__dirname, '..', 'blog', '.next', 'server', 'app', 'index.html'));
+    } else {
+        // Handle '/' route in non-production environment if needed
+        // For example, you might want to render a different HTML page
+        res.send('Non-production environment: Handle the route as needed');
+    }
 });
 
 app.use('/api/post', postRoutes);
