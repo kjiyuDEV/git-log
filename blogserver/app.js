@@ -42,7 +42,7 @@ mongoose
 
 app.get('/', (req, res) => {
     if (prd) {
-        return res.sendFile(path.join(__dirname, '..', 'blog', 'src', 'app', 'layout.js'));
+        return res.sendFile(path.join(__dirname, '..', 'blog', '.next', 'server', 'app', 'index.html'));
     } else {
         // Handle '/' route in non-production environment if needed
         // For example, you might want to render a different HTML page
