@@ -19,7 +19,6 @@ export const postReducer = (state = initialState, action) => {
         case TYPE.POSTS_LOADING_REQUEST:
             return {
                 ...state,
-
                 loading: true,
             };
         case TYPE.POSTS_LOADING_SUCCESS:
